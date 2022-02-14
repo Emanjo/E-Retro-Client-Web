@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Session from "../views/Session.vue";
 import Start from "../views/Start.vue";
-import HelloWorld from "../components/HelloWorld.vue";
+import SessionMain from "../views/SessionMain.vue";
 
 Vue.use(VueRouter);
 
@@ -17,8 +17,8 @@ const routes: Array<RouteConfig> = [
     name: "Session",
     component: Session,
     children: [ {
-      path: "home",
-      component: HelloWorld,
+      path: "/",
+      component: SessionMain,
     }  
     ]
   },
