@@ -1,22 +1,13 @@
 <template>
-  <v-app>
-    <!-- Must have the app property -->
-    <v-app-bar app></v-app-bar>
-
-    <v-container> Hello World </v-container>
-  </v-app>
+  <router-view />
 </template>
 
-<script>
+<script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
 
 @Component
-export default class HelloWorld extends Vue {
-  // Declared as component data
-  message = "Hello World!";
-  message = "Hello World!";
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss"></style>
