@@ -1,6 +1,8 @@
 # E-Retro Web Client
 This is the web client for the Eretro project. More updates will follow...
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cba36a3a-7a96-4dc6-b8ee-6e65209d83f6/deploy-status)](https://app.netlify.com/sites/optimistic-jennings-fafb0f/deploys)
+
 
 # Setup 
 ## Install
