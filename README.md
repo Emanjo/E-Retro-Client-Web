@@ -1,4 +1,4 @@
-# Eretro Web Client
+# E-Retro Web Client
 This is the web client for the Eretro project. More updates will follow...
 
 
