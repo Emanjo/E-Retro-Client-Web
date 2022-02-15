@@ -7,11 +7,17 @@
     </v-app-bar>
 
     <v-container>
-      <v-row>
+      <draggable
+        animation="150"
+        :list="listElements"
+        class="v-row"
+        group="cards"
+      >
         <v-col
           cols="12"
           v-for="(listElement, index) in listElements"
           :key="listElement.id"
+          class="mousover"
         >
           <SessionCardElement
             :listElement="listElement"
@@ -19,7 +25,7 @@
             :index="index"
           />
         </v-col>
-      </v-row>
+      </draggable>
     </v-container>
   </v-card>
 </template>
@@ -30,6 +36,7 @@ import Vue from "vue";
 import Component from "vue-class-component";
 import SessionFormAddCardModal from "./SessionFormAddCardModal.vue";
 import SessionCardElement from "./SessionCardElement.vue";
+import draggable from "vuedraggable";
 
 const CardProps = Vue.extend({
   props: {
@@ -39,7 +46,7 @@ const CardProps = Vue.extend({
 });
 
 @Component({
-  components: { SessionFormAddCardModal, SessionCardElement },
+  components: { SessionFormAddCardModal, SessionCardElement, draggable },
 })
 export default class SessionCardOverview extends CardProps {
   addToList(elementToAdd: ListModel): void {
@@ -51,3 +58,10 @@ export default class SessionCardOverview extends CardProps {
   }
 }
 </script>
+<style lang="scss" scoped>
+.mousover {
+  &:hover {
+    cursor: grab;
+  }
+}
+</style>
