@@ -5,7 +5,7 @@
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
-    <v-card>
+    <v-card @keyup.enter.exact="addElement" @keyup.esc="dialog = false">
       <v-card-title>
         <span class="text-h5">Add card</span>
       </v-card-title>
@@ -28,6 +28,7 @@
               ></v-textarea>
             </v-col>
           </v-row>
+          <small> Ctrl + Enter for new line</small>
         </v-container>
       </v-card-text>
       <v-card-actions>

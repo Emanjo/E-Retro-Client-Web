@@ -36,12 +36,8 @@ import ListModel from "../models/ListModel";
   },
 })
 export default class SessionOverview extends Vue {
-  whatWentWellList: ListModel[] = [
-    { title: "Test", description: "En beskrivelse" },
-  ];
-  improvementList: ListModel[] = [
-    { title: "Lala", description: "En asdasdasdsa" },
-  ];
+  whatWentWellList: ListModel[] = [];
+  improvementList: ListModel[] = [];
   actionList: ListModel[] = [];
 }
 </script>
