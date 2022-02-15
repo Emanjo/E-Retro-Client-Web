@@ -1,11 +1,11 @@
 <template>
   <v-dialog v-model="dialog" max-width="600px">
-    <template v-slot:activator="{ on, attrs }">
+    <template v-slot:activator="{ on, attrs }" @click.stop="dialog = true">
       <v-btn dark v-bind="attrs" v-on="on" fab small outlined>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
-    <v-card @keyup.enter.exact="addElement">
+    <v-card>
       <v-card-title>
         <span class="text-h5">Add card</span>
       </v-card-title>
@@ -14,6 +14,7 @@
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field
+                @keydown.enter.exact="addElement"
                 label="Title*"
                 v-model="title"
                 required
@@ -22,6 +23,7 @@
 
             <v-col cols="12">
               <v-textarea
+                @keydown.enter.exact="addElement"
                 label="Description*"
                 v-model="description"
                 required
@@ -33,10 +35,8 @@
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" text @click="dialog = false">
-          Cancel
-        </v-btn>
-        <v-btn color="blue darken-1" text @click="addElement"> Save </v-btn>
+        <v-btn color="warning" text @click="dialog = false"> Cancel </v-btn>
+        <v-btn color="success" text @click="addElement"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -45,6 +45,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
+import IDGenerator from "@/Utilities/IDGenerator";
 
 @Component
 export default class SessionFormAddCardModal extends Vue {
@@ -56,12 +57,12 @@ export default class SessionFormAddCardModal extends Vue {
     this.$emit("addElement", {
       title: this.title,
       description: this.description,
+      id: IDGenerator.GenerateId(),
     });
-
-    this.dialog = false;
 
     this.title = "";
     this.description = "";
+    this.dialog = false;
   }
 }
 </script>

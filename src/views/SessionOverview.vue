@@ -1,25 +1,19 @@
 <template>
   <v-row>
     <v-col>
-      <Card
-        v-on:updateList="whatWentWellList = $event"
+      <SessionCardOverview
         cardTitle="What went well"
         :listElements="whatWentWellList"
       />
     </v-col>
     <v-col>
-      <Card
-        v-on:updateList="improvementList = $event"
+      <SessionCardOverview
         cardTitle="Improvements"
         :listElements="improvementList"
       />
     </v-col>
     <v-col>
-      <Card
-        v-on:updateList="actionList = $event"
-        cardTitle="Actions"
-        :listElements="actionList"
-      />
+      <SessionCardOverview cardTitle="Actions" :listElements="actionList" />
     </v-col>
   </v-row>
 </template>
@@ -27,12 +21,12 @@
 <script lang="ts">
 import Vue from "vue";
 import Component from "vue-class-component";
-import Card from "../components/SessionCard.vue";
+import SessionCardOverview from "../components/SessionCardOverview.vue";
 import ListModel from "../models/ListModel";
 
 @Component({
   components: {
-    Card,
+    SessionCardOverview,
   },
 })
 export default class SessionOverview extends Vue {
