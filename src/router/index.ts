@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Session from "../views/Session.vue";
 import Start from "../views/Start.vue";
-import SessionMain from "../views/SessionMain.vue";
+import SessionOverview from "../views/SessionOverview.vue";
 
 Vue.use(VueRouter);
 
@@ -16,11 +16,12 @@ const routes: Array<RouteConfig> = [
     path: "/session",
     name: "Session",
     component: Session,
-    children: [ {
-      path: "/",
-      component: SessionMain,
-    }  
-    ]
+    children: [
+      {
+        path: "/",
+        component: SessionOverview,
+      },
+    ],
   },
 ];
 
@@ -29,6 +30,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
 
 export default router;

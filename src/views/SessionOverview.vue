@@ -1,13 +1,25 @@
 <template>
   <v-row>
     <v-col>
-      <Card cardTitle="What went well" :listElements="whatWentWellList" />
+      <Card
+        v-on:updateList="whatWentWellList = $event"
+        cardTitle="What went well"
+        :listElements="whatWentWellList"
+      />
     </v-col>
     <v-col>
-      <Card cardTitle="Improvements" :listElements="improvementList" />
+      <Card
+        v-on:updateList="improvementList = $event"
+        cardTitle="Improvements"
+        :listElements="improvementList"
+      />
     </v-col>
     <v-col>
-      <Card cardTitle="Actions" :listElements="actionList" />
+      <Card
+        v-on:updateList="actionList = $event"
+        cardTitle="Actions"
+        :listElements="actionList"
+      />
     </v-col>
   </v-row>
 </template>
@@ -23,7 +35,7 @@ import ListModel from "../models/ListModel";
     Card,
   },
 })
-export default class SessionMain extends Vue {
+export default class SessionOverview extends Vue {
   whatWentWellList: ListModel[] = [
     { title: "Test", description: "En beskrivelse" },
   ];
