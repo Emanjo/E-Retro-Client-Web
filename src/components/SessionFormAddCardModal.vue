@@ -1,11 +1,11 @@
 <template>
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog" max-width="600px">
     <template v-slot:activator="{ on, attrs }">
       <v-btn dark v-bind="attrs" v-on="on" fab small outlined>
         <v-icon>mdi-plus</v-icon>
       </v-btn>
     </template>
-    <v-card @keyup.enter.exact="addElement" @keyup.esc="dialog = false">
+    <v-card @keyup.enter.exact="addElement">
       <v-card-title>
         <span class="text-h5">Add card</span>
       </v-card-title>
