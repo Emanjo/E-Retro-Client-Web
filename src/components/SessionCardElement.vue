@@ -13,6 +13,14 @@
       description
     }}</v-card-subtitle>
 
+    <v-footer v-if="!isEditingCard" color="#FFF9C4">
+      <v-icon></v-icon>
+      <v-icon right @click="giveVote(listElement.id)"> mdi-thumb-up </v-icon>
+      <v-icon right @click="takeVote(listElement.id)"> mdi-thumb-down </v-icon>
+      <v-spacer></v-spacer>
+      <v-chip color="primary">{{ votes }}</v-chip>
+    </v-footer>
+
     <v-container v-if="isEditingCard" @keyup.esc="cancelEdit">
       <v-text-field
         v-model="title"
@@ -49,6 +57,31 @@ export default class SessionCardElement extends CardProps {
   isEditingCard = false;
   title: string = this.listElement.title;
   description: string = this.listElement.description;
+  votes: number = this.listElement.votes;
+
+  giveVote(id: string): void {
+    var maximumVotesToGive = this.$store.state.maximumNumberOfVotesToGive;
+
+    if (this.votesGiven >= maximumVotesToGive) return;
+
+    this.$store.commit("addVoteGiven", id);
+    this.listElement.votes += 1;
+    this.votes = this.listElement.votes;
+  }
+
+  get votesGiven(): number {
+    return this.$store.getters.getNumberOfVotesGiven;
+  }
+
+  takeVote(id: string): void {
+    var maximumVotesToGive = this.$store.state.maximumNumberOfVotesToGive;
+
+    if (this.votesGiven <= maximumVotesToGive && this.listElement.votes > 0) {
+      this.$store.commit("removeVoteGiven", id);
+      this.listElement.votes -= 1;
+      this.votes = this.listElement.votes;
+    }
+  }
 
   editCard(): void {
     this.isEditingCard = true;

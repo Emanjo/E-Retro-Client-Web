@@ -22,7 +22,7 @@
 import Vue from "vue";
 import Component from "vue-class-component";
 import SessionCardOverview from "../components/SessionCardOverview.vue";
-import ListModel from "../models/ListModel";
+import CardItemModel from "../models/CardItemModel";
 
 @Component({
   components: {
@@ -30,9 +30,9 @@ import ListModel from "../models/ListModel";
   },
 })
 export default class SessionOverview extends Vue {
-  whatWentWellList: ListModel[] = [];
-  improvementList: ListModel[] = [];
-  actionList: ListModel[] = [];
+  whatWentWellList: CardItemModel[] = [];
+  improvementList: CardItemModel[] = [];
+  actionList: CardItemModel[] = [];
 }
 </script>
 

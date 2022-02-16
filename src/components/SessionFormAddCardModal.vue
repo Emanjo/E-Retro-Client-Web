@@ -14,7 +14,7 @@
           <v-row>
             <v-col cols="12" sm="6" md="4">
               <v-text-field
-                @keydown.enter.exact="addElement"
+                @keydown.enter.exact="addCard"
                 label="Title*"
                 v-model="title"
                 required
@@ -23,7 +23,7 @@
 
             <v-col cols="12">
               <v-textarea
-                @keydown.enter.exact="addElement"
+                @keydown.enter.exact="addCard"
                 label="Description*"
                 v-model="description"
                 required
@@ -36,7 +36,7 @@
       <v-card-actions>
         <v-spacer></v-spacer>
         <v-btn color="warning" text @click="dialog = false"> Cancel </v-btn>
-        <v-btn color="success" text @click="addElement"> Save </v-btn>
+        <v-btn color="success" text @click="addCard"> Save </v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>
@@ -53,11 +53,12 @@ export default class SessionFormAddCardModal extends Vue {
   description = "";
   dialog = false;
 
-  addElement(): void {
-    this.$emit("addElement", {
+  addCard(): void {
+    this.$emit("addCard", {
       title: this.title,
       description: this.description,
       id: IDGenerator.GenerateId(),
+      votes: 0,
     });
 
     this.title = "";

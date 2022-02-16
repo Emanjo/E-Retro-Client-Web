@@ -3,7 +3,7 @@
     <v-app-bar dark color="green">
       <v-toolbar-title>{{ cardTitle }}</v-toolbar-title>
       <v-spacer></v-spacer>
-      <SessionFormAddCardModal v-on:addElement="addToList" />
+      <SessionFormAddCardModal v-on:addCard="addToList" />
     </v-app-bar>
 
     <v-container>
@@ -21,7 +21,7 @@
         >
           <SessionCardElement
             :listElement="listElement"
-            v-on:remove="removeFromList(index)"
+            v-on:remove="removeFromList(index, listElement.id)"
             :index="index"
           />
         </v-col>
@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import ListModel from "@/models/ListModel";
+import CardItemModel from "@/models/CardItemModel";
 import Vue from "vue";
 import Component from "vue-class-component";
 import SessionFormAddCardModal from "./SessionFormAddCardModal.vue";
@@ -49,12 +49,13 @@ const CardProps = Vue.extend({
   components: { SessionFormAddCardModal, SessionCardElement, draggable },
 })
 export default class SessionCardOverview extends CardProps {
-  addToList(elementToAdd: ListModel): void {
+  addToList(elementToAdd: CardItemModel): void {
     this.listElements.push(elementToAdd);
   }
 
-  removeFromList(index: number): void {
+  removeFromList(index: number, id: string): void {
     this.listElements.splice(index, 1);
+    this.$store.commit("removeVotes", id);
   }
 }
 </script>
