@@ -58,6 +58,9 @@ export default new Vuex.Store({
       const votesInPositiveNumbers = (state.votesGiven as CardItemVoteModel[]).map(item => Math.abs(item.votes));
 
       return ArrayUtilities.Sum(votesInPositiveNumbers);
+    },
+    getNumberOfVotesLeft(state: any, getters: any): number {
+      return state.maximumNumberOfVotesToGive - getters.getNumberOfVotesGiven;
     }
   },
   actions: {},

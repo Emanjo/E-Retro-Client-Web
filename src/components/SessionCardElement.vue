@@ -14,7 +14,6 @@
     }}</v-card-subtitle>
 
     <v-footer v-if="!isEditingCard" color="#FFF9C4">
-      <v-icon></v-icon>
       <v-icon right @click="giveVote(listElement.id)"> mdi-thumb-up </v-icon>
       <v-icon right @click="takeVote(listElement.id)"> mdi-thumb-down </v-icon>
       <v-spacer></v-spacer>
@@ -71,6 +70,10 @@ export default class SessionCardElement extends CardProps {
 
   get votesGiven(): number {
     return this.$store.getters.getNumberOfVotesGiven;
+  }
+
+  get votesLeft(): number {
+    return this.$store.getters.getNumberOfVotesLeft;
   }
 
   takeVote(id: string): void {
